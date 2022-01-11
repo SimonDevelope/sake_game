@@ -1,7 +1,9 @@
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import HtmlWebpackPlugin from "html-webpack-plugin";
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const path = require("path");
 
-const config = {
+module.exports = {
   mode: "development",
   entry: {
     main: "./src/index.js",
@@ -18,30 +20,14 @@ const config = {
       {
         test: /\.s[ac]ss$/,
         use: [
-          isProd ? MiniCssExtractPlugin.loader : "style-loader",
+          { loader: MiniCssExtractPlugin.loader },
           {
             loader: "css-loader",
-            options: {
-              importLoaders: 2,
-            },
+            options: { import: true },
           },
           "resolve-url-loader",
           {
             loader: "sass-loader",
-            option: {
-              sourceMap: true,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: {
-              minimize: true,
-            },
           },
         ],
       },
@@ -50,10 +36,16 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      minify: {
+        collapseWhitespace: true,
+        preserveLineBreaks: true,
+      },
     }),
+    new MiniCssExtractPlugin({ filename: "./src/style/style.scss" }),
+    new CleanWebpackPlugin(),
   ],
   output: {
     filename: "[name].js",
-    path: path.resolve("./dist"),
+    path: path.resolve("./public"),
   },
 };
