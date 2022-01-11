@@ -12,24 +12,16 @@ module.exports = {
     rules: [
       {
         test: /\.(js)$/,
-        exclude: /node_modules/,
+        include: [path.resolve(__dirname, "src/js")],
         use: {
           loader: "babel-loader",
         },
+        exclude: /node_modules/,
       },
       {
         test: /\.s[ac]ss$/,
-        use: [
-          { loader: MiniCssExtractPlugin.loader },
-          {
-            loader: "css-loader",
-            options: { import: true },
-          },
-          "resolve-url-loader",
-          {
-            loader: "sass-loader",
-          },
-        ],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        exclude: /node_module/,
       },
     ],
   },
@@ -39,9 +31,11 @@ module.exports = {
       minify: {
         collapseWhitespace: true,
         preserveLineBreaks: true,
+        removeComments: true,
+        removeAttributeQuotes: true,
       },
     }),
-    new MiniCssExtractPlugin({ filename: "./src/style/style.scss" }),
+    new MiniCssExtractPlugin({ filename: "style/style.scss" }),
     new CleanWebpackPlugin(),
   ],
   output: {

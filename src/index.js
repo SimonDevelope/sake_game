@@ -1,4 +1,5 @@
 "use strict";
+import "./style/style.scss";
 
 const root = document.getElementById("root");
 const divTag = document.createElement("div");
