@@ -15,6 +15,10 @@ module.exports = {
         include: [path.resolve(__dirname, "src/js")],
         use: {
           loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+            sourceMaps: true,
+          },
         },
         exclude: /node_modules/,
       },
