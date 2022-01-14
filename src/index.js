@@ -1,9 +1,13 @@
-"use strict";
 import "./style/style.scss";
 
-const root = document.getElementById("root");
-const divTag = document.createElement("div");
-const outLine = divTag.setAttribute("class", "total-view-port");
-const inLine = divTag.setAttribute("class", "inner-view-port");
+const component = () => {
+  const element = document.createElement("div");
+  const btn = document.createElement("button");
 
-const board = root.appendChild(divTag);
+  element.innerHTML = "hellow simon";
+
+  element.classList.add("hellow");
+  return element;
+};
+
+document.body.appendChild(component());
