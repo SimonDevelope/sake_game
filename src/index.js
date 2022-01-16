@@ -1,12 +1,10 @@
-import "./style/style.scss";
+import './style/style.scss';
 
 const component = () => {
-  const element = document.createElement("div");
-  const btn = document.createElement("button");
-
-  element.innerHTML = "hellow simon";
-
-  element.classList.add("hellow");
+  const element = document.createElement('div');
+  const btn = document.createElement('button');
+  element.innerHTML = 'hellow simon';
+  element.classList.add('hellow');
   return element;
 };
 
