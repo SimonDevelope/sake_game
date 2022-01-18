@@ -14,10 +14,13 @@ const component = () => {
   const canvAttr = board.getContext('2d');
   board.width = window.innerWidth;
   board.height = window.innerHeight;
-  let canvX = 10;
-  let canvY = 10;
-  let canvW = 15;
-  let canvH = 10;
+  let canvW = 20;
+  let canvH = 14;
+
+  let canvX = (board.width - canvW) / 2;
+  let canvY = (board.height - canvH) / 2;
+  console.log(canvX);
+  console.log(canvY);
   let rightBtn = false;
   let leftBtn = false;
   let upBtn = false;
@@ -25,38 +28,64 @@ const component = () => {
 
   // 공 그리기 test
   const drawSnake = () => {
+    canvAttr.beginPath();
     canvAttr.rect(canvX, canvY, canvW, canvH);
     canvAttr.fillStyle = '#ffffff';
     canvAttr.fill();
+    canvAttr.closePath();
   };
 
   // 공 움직이기 test
   const keyDownHandler = (e) => {
     if (e.keyCode == 39) {
       rightBtn = true;
-      canvX += 15;
     }
     if (e.keyCode == 37) {
       leftBtn = true;
-      canvX -= 15;
     }
     if (e.keyCode == 40) {
       downBtn = true;
-      canvY += 10;
     }
     if (e.keyCode == 38) {
       upBtn = true;
-      canvY -= 10;
+    }
+  };
+  const keyUpHandler = (e) => {
+    if (e.keyCode == 39) {
+      rightBtn = false;
+    }
+    if (e.keyCode == 37) {
+      leftBtn = false;
+    }
+    if (e.keyCode == 40) {
+      downBtn = false;
+    }
+    if (e.keyCode == 38) {
+      upBtn = false;
     }
   };
 
-  document.addEventListener('keydown', keyDownHandler, false);
+  document.addEventListener('keydown', keyDownHandler);
+  document.addEventListener('keyup', keyUpHandler);
 
   const ballStatus = () => {
+    canvAttr.clearRect(canvX, canvY, canvW, canvH);
+    if (rightBtn) {
+      canvX += 10;
+    }
+    if (leftBtn) {
+      canvX -= 10;
+    }
+    if (downBtn) {
+      canvY += 7;
+    }
+    if (upBtn) {
+      canvY -= 7;
+    }
     drawSnake();
   };
 
-  setInterval(ballStatus, 1);
+  setInterval(ballStatus, 10);
 
   console.log(board.width);
   console.log(board.height);
