@@ -7,16 +7,23 @@
   align-items: center;
 }
 .inner-view-port {
-  width: 60%;
+  width: 50%;
   height: 95%;
-  border: 2px solid #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // border: 2px solid #ffffff;
 }
 
 .board-attr {
   width: 100%;
   height: 100%;
+  border: 1px solid #ffffff;
+}
+.tr {
+  height: 35px;
+  width: 100%;
+  border: 1px solid #ffffff;
+}
+.td {
+  height: 35px;
+  width: 40px;
   border: 1px solid #ffffff;
 }
