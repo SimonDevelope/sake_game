@@ -9,7 +9,6 @@
 .inner-view-port {
   width: 50%;
   height: 95%;
-  // border: 2px solid #ffffff;
 }
 
 .board-attr {
@@ -17,12 +16,12 @@
   height: 100%;
   border: 1px solid #ffffff;
 }
-.tr {
+#tr {
   height: 35px;
-  width: 100%;
+  width: 40px;
   border: 1px solid #ffffff;
 }
-.td {
+#td {
   height: 35px;
   width: 40px;
   border: 1px solid #ffffff;

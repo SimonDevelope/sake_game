@@ -1,5 +1,6 @@
-import './style/style.scss';
 import './style/reset.scss';
+import './style/style.scss';
+
 
 // for (let i = 1; i <= 100; i++) {
 //   fieldArray.push(i);
@@ -14,28 +15,47 @@ const component = () => {
   bgBoard.appendChild(innerBoard);
 
   const field = [];
+  const snake = [];
 
-  for (let i = 0; i < 20; i++) {
-    field[i] = [];
-    const tr = document.createElement('tr');
-    const rows = innerBoard.appendChild(tr);
-    tr.classList.add('tr');
-    for (let j = 0; j < 20; j++) {
-      field[i][j] = i + ',' + j;
-      const td = document.createElement('td');
-      td.classList.add('td');
-      td.innerHTML = `${field[i][j]}`;
-      rows.appendChild(td);
+  const snakeInit = () => {
+    snake.push(0);
+    const snakeBody = document.createElement('td');
+    snakeBody.setAttribute('id', 'snake');
+    const test = document.getElementsByTagName('tr');
+    const test2 = document.getElementById('2');
+    const test3 = document.getElementsByClassName('3, 14');
+    console.log(test3);
+    test3.innerText = `${snake}`;
+    console.log(test2);
+    console.log(test);
+
+    return snakeBody;
+  };
+
+  snakeInit();
+  console.log(snake);
+
+  const fieldDraw = () => {
+    for (let i = 0; i < 20; i++) {
+      field[i] = [];
+      const tr = document.createElement('tr');
+      const rows = innerBoard.appendChild(tr);
+      // rows.setAttribute('class', `${i}`);
+      rows.classList.add(`${i}`);
+      rows.setAttribute('id', 'tr');
+
+      for (let j = 0; j < 20; j++) {
+        field[i][j] = i + ',' + j;
+        const td = document.createElement('td');
+        // td.setAttribute('class', `${field[i][j]}_td`);
+        td.classList.add(`${field[i][j]}`);
+        td.setAttribute('id', 'td');
+        rows.appendChild(td);
+      }
     }
-  }
+  };
 
-  // for (let rows = 0; rows < 10; rows++) {
-  //   for (const el of field[rows]) {
-  //     field.map(() => {
-  //       return (innerBoard.innerHTML = `<div value=${el} class='el'><div>`);
-  //     });
-  //   }
-  // }
+  fieldDraw();
 
   return bgBoard;
 };
